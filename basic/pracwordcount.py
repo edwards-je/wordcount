@@ -45,3 +45,4 @@ count_dict = {}
 
 count_dict = count_append(words_array, count_dict)
 print(count_dict)
+#test comment
