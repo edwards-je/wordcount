@@ -45,4 +45,8 @@ count_dict = {}
 
 count_dict = count_append(words_array, count_dict)
 print(count_dict)
-#test comment
+
+# retruns sorted count in word 1, count 1 fromat:
+def print_words(word_count_hash):
+    for key in sorted(word_count_hash):
+        print key, word_count_hash[key]

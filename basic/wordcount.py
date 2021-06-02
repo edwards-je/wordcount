@@ -54,12 +54,15 @@ def main():
     print 'usage: ./wordcount.py {--count | --topcount} file'
     sys.exit(1)
 
+  print("Argument List:", str(sys.argv))
   option = sys.argv[1]
   filename = sys.argv[2]
   if option == '--count':
-    print_words(filename)
+    # print_words(filename)
+    print("Hello from --count")
   elif option == '--topcount':
-    print_top(filename)
+    print("Hello from --topcount")
+    # print_top(filename)
   else:
     print 'unknown option: ' + option
     sys.exit(1)
