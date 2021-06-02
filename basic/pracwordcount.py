@@ -13,6 +13,8 @@ through the air!  Do you think you could manage it?)  `And what
 an ignorant little girl she'll think me for asking!  No, it'll
 never do to ask:  perhaps I shall see it written up somewhere.
 '''
+
+# takes in string as argument and return array of separated words, non-alphanumeric characters removed
 def clean_text(text):
     alphabet = 'abcdefghijklmnopqrstuvwxyz '
     cleantext = ""
@@ -23,20 +25,23 @@ def clean_text(text):
         else:
             cleantext += ' '
 
-    return cleantext
-
-splitted = clean_text(seed)
-splitted = splitted.split() #split text 
-print(splitted)
-
-# dict2 = {}    
+    return cleantext.split()
 
 
-# # count and add words to dictionary
-# for i in splitted:
-#     if dict2.has_key(i):
-#         dict2[i] += 1
-#     else:
-#         dict2[i] = 1
 
-# print(dict2)
+# count and add words to dictionary
+def count_append(words, word_count_hash):
+    for i in words:
+        if word_count_hash.has_key(i):
+            word_count_hash[i] += 1
+        else:
+            word_count_hash[i] = 1
+
+    #print(word_count_hash)
+    return(word_count_hash)
+
+words_array = clean_text(seed)
+count_dict = {}
+
+count_dict = count_append(words_array, count_dict)
+print(count_dict)
