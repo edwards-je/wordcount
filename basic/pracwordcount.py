@@ -1,3 +1,6 @@
+#!/usr/bin/python -tt
+
+
 import re
 
 #seed text
@@ -16,7 +19,7 @@ never do to ask:  perhaps I shall see it written up somewhere.
 
 # takes in string as argument and return array of separated words, non-alphanumeric characters removed
 def clean_text(text):
-    alphabet = 'abcdefghijklmnopqrstuvwxyz '
+    alphabet = 'abcdefghijklmnopqrstuvwxyz \''
     cleantext = ""
     text = text.lower()
     for i in text:
@@ -26,7 +29,6 @@ def clean_text(text):
             cleantext += ' '
 
     return cleantext.split()
-
 
 
 # count and add words to dictionary
@@ -40,13 +42,26 @@ def count_append(words, word_count_hash):
     #print(word_count_hash)
     return(word_count_hash)
 
-words_array = clean_text(seed)
-count_dict = {}
 
-count_dict = count_append(words_array, count_dict)
-print(count_dict)
+# create dicitonary from text
+def dict_create(seed):
+    words_array = clean_text(seed)
+    count_dict = {}
+    count_dict = count_append(words_array, count_dict)
+    return(count_dict)
 
-# retruns sorted count in word 1, count 1 fromat:
-def print_words(word_count_hash):
-    for key in sorted(word_count_hash):
-        print key, word_count_hash[key]
+
+# returns sorted count in <word 1, count 1> format: for --count
+def print_words(text):
+    text_dict = dict_create(text)
+    for key in sorted(text_dict):
+        print key, text_dict[key]
+
+
+# returns 20 words from most used to least
+def top_count(text):
+    text_dict = dict_create(text)
+    sorted_list = sorted(text_dict.items(), key=lambda tup: tup[1], reverse=True)
+    print(sorted_list[:20])
+    
+
