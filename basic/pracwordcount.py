@@ -1,35 +1,25 @@
 #!/usr/bin/python -tt
 
+# read text file
+def text_read(file):
+    with open(file, 'r') as f:
+        text = f.read()
+    return text
 
-import re
-
-#seed text
-seed = '''Presently she began again.  `I wonder if I shall fall right
-THROUGH the earth!  How funny it'll seem to come out among the
-people that walk with their heads downward!  The Antipathies, I
-think--' (she was rather glad there WAS no one listening, this
-time, as it didn't sound at all the right word) `--but I shall
-have to ask them what the name of the country is, you know.
-Please, Ma'am, is this New Zealand or Australia?' (and she tried
-to curtsey as she spoke--fancy CURTSEYING as you're falling
-through the air!  Do you think you could manage it?)  `And what
-an ignorant little girl she'll think me for asking!  No, it'll
-never do to ask:  perhaps I shall see it written up somewhere.
-'''
-
-# takes in string as argument and return array of separated words, non-alphanumeric characters removed
+# # takes in string as argument and return array of separated words, non-alphanumeric characters removed
 def clean_text(text):
     alphabet = 'abcdefghijklmnopqrstuvwxyz \''
     cleantext = ""
-    text = text.lower()
+    text = text_read(text).lower()
     for i in text:
         if i in alphabet:
             cleantext += i
         else:
             cleantext += ' '
-
-    return cleantext.split()
-
+    cleantext = cleantext.split()
+    cleantext[:] = [x for x in cleantext if x != '\'']
+    
+    return(cleantext)
 
 # count and add words to dictionary
 def count_append(words, word_count_hash):
@@ -65,3 +55,4 @@ def top_count(text):
     print(sorted_list[:20])
     
 
+top_count('alice.txt')
